@@ -1,0 +1,391 @@
+/*
+  Estilos gerais para: Gestão de OS e Tarefas - Horas Trabalhadas
+  - Tipografia com Inter
+  - Layout responsivo
+  - Componentes: header, cards, formulários, tabela, botões, footer
+*/
+
+:root {
+  --bg: #0b1220;
+  --panel: #121a2b;
+  --panel-2: #0f1626;
+  --border: #22304d;
+  --text: #e7ecf5;
+  --muted: #aab6cf;
+  --primary: #4f7cff;
+  --primary-600: #4168d1;
+  --primary-700: #3657ad;
+  --danger: #ff6b6b;
+  --danger-700: #d95353;
+  --success: #2ecc71;
+  --warning: #ffb020;
+
+  --shadow-1: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --shadow-2: 0 4px 14px rgba(0, 0, 0, 0.25);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --space-1: 6px;
+  --space-2: 10px;
+  --space-3: 14px;
+  --space-4: 18px;
+  --space-5: 24px;
+  --space-6: 32px;
+}
+
+/* Reset e base */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+  color: var(--text);
+  background: radial-gradient(1200px 700px at 10% -10%, rgba(79, 124, 255, 0.18), transparent 60%),
+              radial-gradient(1200px 700px at 110% 10%, rgba(46, 213, 115, 0.12), transparent 60%),
+              var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, svg {
+  display: block;
+}
+
+h1, h2, h3 {
+  margin: 0 0 var(--space-3);
+  font-weight: 600;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 6px;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+input, select, textarea, button {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* Helpers */
+.align-right { text-align: right; }
+.align-end { align-self: end; }
+
+/* Header */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  background: linear-gradient(180deg, rgba(18, 26, 43, 0.9), rgba(18, 26, 43, 0.7));
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.logo-upload {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.logo-upload input[type="file"] {
+  display: none;
+}
+
+.logo-upload .logo-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--panel);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.logo-upload .logo-label:hover {
+  border-color: var(--primary);
+  color: var(--text);
+}
+
+#logoPreview {
+  width: auto;
+  height: 42px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+
+.company-info {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  gap: var(--space-4);
+}
+
+.actions-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Botões */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, #17223a, #131d31);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 0.06s ease, box-shadow 0.2s ease, border-color 0.2s;
+  box-shadow: var(--shadow-2);
+}
+
+.btn:hover {
+  border-color: #2e4370;
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn.primary {
+  background: linear-gradient(180deg, var(--primary), var(--primary-600));
+  border-color: transparent;
+}
+
+.btn.primary:hover { background: linear-gradient(180deg, var(--primary-600), var(--primary-700)); }
+
+.btn.danger {
+  background: linear-gradient(180deg, var(--danger), var(--danger-700));
+  border-color: transparent;
+}
+
+.btn.ghost {
+  background: transparent;
+  border-color: var(--border);
+}
+
+.btn.icon-btn {
+  width: 44px;
+  padding: 0;
+}
+
+.btn:disabled, .btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Layout principal */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-6) 120px;
+}
+
+.card {
+  margin-bottom: var(--space-6);
+  padding: var(--space-5);
+  background: linear-gradient(180deg, rgba(23, 34, 58, 0.9), rgba(18, 26, 43, 0.9));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+/* Formulário em grid */
+.grid-form {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
+  gap: var(--space-4);
+}
+
+.field-group { display: flex; flex-direction: column; }
+.field-wide { grid-column: 1 / -1; }
+
+input[type="text"], input[type="number"], input[type="date"], input[type="email"], input[type="tel"], select, textarea {
+  width: 100%;
+  padding: 12px 12px;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input::placeholder, textarea::placeholder { color: #90a0c0; }
+
+input:focus, select:focus, textarea:focus {
+  border-color: rgba(79, 124, 255, 0.6);
+  box-shadow: 0 0 0 3px rgba(79, 124, 255, 0.2);
+}
+
+/* Tabela */
+.table-wrapper {
+  position: relative;
+  overflow: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 900px;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #142039;
+  color: var(--muted);
+  text-align: left;
+  font-weight: 600;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+tbody td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+tbody tr:hover {
+  background: rgba(79, 124, 255, 0.06);
+}
+
+tbody tr:nth-child(2n) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+tfoot td {
+  padding: 12px 14px;
+  border-top: 1px solid var(--border);
+  color: var(--text);
+  background: rgba(20, 32, 57, 0.6);
+}
+
+#totalBusinessDays, #totalHours {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Exportar e Compartilhar */
+.export-actions {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-4);
+}
+
+.share-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+/* Footer */
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 54px;
+  padding: 0 var(--space-6);
+  color: var(--muted);
+  background: linear-gradient(0deg, rgba(18, 26, 43, 0.95), rgba(18, 26, 43, 0.7));
+  border-top: 1px solid var(--border);
+}
+
+/* Status badges (opcional para o futuro, se quiser exibir status) */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  border: 1px solid var(--border);
+  background: var(--panel);
+}
+
+.badge.success { color: var(--success); }
+.badge.warning { color: var(--warning); }
+.badge.danger { color: var(--danger); }
+
+/* Acessibilidade: foco visível */
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid rgba(79, 124, 255, 0.7);
+  outline-offset: 2px;
+}
+
+/* Responsividade */
+@media (max-width: 1100px) {
+  .grid-form { grid-template-columns: repeat(3, minmax(160px, 1fr)); }
+  .company-info { grid-template-columns: repeat(2, minmax(160px, 1fr)); }
+}
+
+@media (max-width: 860px) {
+  .app-header { flex-direction: column; align-items: stretch; gap: var(--space-3); }
+  .brand { flex-direction: column; align-items: stretch; gap: var(--space-3); }
+  .company-info { grid-template-columns: 1fr; }
+  .actions-row { justify-content: flex-end; }
+  .grid-form { grid-template-columns: repeat(2, minmax(160px, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .container { padding: var(--space-5) var(--space-4) 100px; }
+  .grid-form { grid-template-columns: 1fr; }
+  .share-row { grid-template-columns: 1fr; }
+  table { min-width: 720px; }
+}
+
+/* Impressão básica (para melhor exportação visual, caso necessário) */
+@media print {
+  .app-header, .app-footer, .export-actions, .share-row, .actions-row, .logo-upload .logo-label { display: none !important; }
+  body { background: #fff; color: #000; }
+  .card { box-shadow: none; border: 1px solid #ddd; background: #fff; }
+  thead th { position: static; background: #f2f2f2; color: #000; }
+}
+
+
